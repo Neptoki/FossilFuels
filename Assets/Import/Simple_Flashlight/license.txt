@@ -1,0 +1,11 @@
+Model Information:
+* title:	Simple Flashlight
+* source:	https://sketchfab.com/3d-models/simple-flashlight-e712f5ce28174630b799fc9ee15cacd5
+* author:	ZaneMago (https://sketchfab.com/ZaneMago)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Simple Flashlight" (https://sketchfab.com/3d-models/simple-flashlight-e712f5ce28174630b799fc9ee15cacd5) by ZaneMago (https://sketchfab.com/ZaneMago) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
