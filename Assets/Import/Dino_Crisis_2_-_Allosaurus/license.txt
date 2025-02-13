@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dino Crisis 2 - Allosaurus
+* source:	https://sketchfab.com/3d-models/dino-crisis-2-allosaurus-4e7bda51868042b3a93d36cfc77c6e9b
+* author:	ziggertron (https://sketchfab.com/ziggertron)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dino Crisis 2 - Allosaurus" (https://sketchfab.com/3d-models/dino-crisis-2-allosaurus-4e7bda51868042b3a93d36cfc77c6e9b) by ziggertron (https://sketchfab.com/ziggertron) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
