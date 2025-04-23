@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class grabAnimator : MonoBehaviour
 {
+    [SerializeField] private SkinnedMeshRenderer handModel;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        handModel.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void selectEnter()
     {
-        
+        handModel.enabled = true;
+    }
+    public void selectExit()
+    {
+        handModel.enabled = false;
     }
 }
