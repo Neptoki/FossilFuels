@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class FootstepScript : MonoBehaviour
 {
+    public GameObject footstep;
     public Transform xrOriginTransform;
     public float movementThreshold = 0.01f;
     public float stepInterval = 0.5f;
-
-    public AudioSource leftFootAudio;
-    public AudioSource rightFootAudio;
-
-    public List<AudioClip> dirtFootsteps; 
-    public List<AudioClip> metalFootsteps;
-
     public float minPitch = 0.9f;
     public float maxPitch = 1.1f;
 
-    public float raycastDistance = 1.5f;
     private Vector3 lastPosition;
     private float stepTimer = 0f;
-    private bool isLeftFoot = true;
+    private AudioSource footstepAudio;
 
     void Start()
     {
-        if (xrOriginTransform == null || leftFootAudio == null || rightFootAudio == null)
+        footstep.SetActive(false);
+        footstepAudio = footstep.GetComponent<AudioSource>();
+
+        if (xrOriginTransform == null)
         {
-            Debug.LogWarning("FootstepScript missing references.");
+            Debug.LogWarning("XR Origin Transform not assigned!");
             enabled = false;
             return;
         }
@@ -42,72 +38,31 @@ public class FootstepScript : MonoBehaviour
         {
             stepTimer += Time.deltaTime;
 
-            if (stepTimer >= stepInterval)
+            if (stepTimer >= stepInterval && footstepAudio != null)
             {
-                PlayFootstep();
+                footstepAudio.pitch = Random.Range(minPitch, maxPitch);
+                footstepAudio.Play();
                 stepTimer = 0f;
             }
+
+            footsteps();
         }
         else
         {
+            StopFootsteps();
             stepTimer = 0f;
         }
 
         lastPosition = xrOriginTransform.position;
     }
 
-    void PlayFootstep()
+    void footsteps()
     {
-        AudioSource currentFoot = isLeftFoot ? leftFootAudio : rightFootAudio;
-        currentFoot.pitch = Random.Range(minPitch, maxPitch);
-
-        // Detect the surface with raycast
-        string surfaceTag = GetSurfaceTag();
-
-        // Always play a sound, but if it's metal, change to metal sound
-        AudioClip clipToPlay = GetRandomClipForSurface(surfaceTag);
-        if (clipToPlay != null)
-        {
-            currentFoot.clip = clipToPlay;
-            currentFoot.Play();
-        }
-
-        isLeftFoot = !isLeftFoot;
+        footstep.SetActive(true);
     }
 
-    string GetSurfaceTag()
+    void StopFootsteps()
     {
-        RaycastHit hit;
-        Vector3 rayOrigin = xrOriginTransform.position + Vector3.up * 0.1f;
-
-        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, raycastDistance))
-        {
-            // Return "Metal" if metal is detected, otherwise return "Dirt"
-            if (hit.collider.tag == "Metal")
-            {
-                return "Metal";
-            }
-            else if (hit.collider.tag == "Dirt")
-            {
-                return "Dirt";
-            }
-        }
-
-        return "Untagged";
-    }
-
-    AudioClip GetRandomClipForSurface(string tag)
-    {
-        if (tag == "Metal" && metalFootsteps.Count > 0)
-        {
-            return metalFootsteps[Random.Range(0, metalFootsteps.Count)];
-        }
-        else if (tag == "Dirt" && dirtFootsteps.Count > 0)
-        {
-            return dirtFootsteps[Random.Range(0, dirtFootsteps.Count)];
-        }
-
-        // Fallback to dirt if no tag found
-        return dirtFootsteps.Count > 0 ? dirtFootsteps[Random.Range(0, dirtFootsteps.Count)] : null;
+        footstep.SetActive(false);
     }
 }
