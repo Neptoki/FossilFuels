@@ -11,6 +11,10 @@ public class FootstepScript : MonoBehaviour
     public float minPitch = 0.9f;
     public float maxPitch = 1.1f;
 
+    public AudioClip defaultFootstepClip;
+    public AudioClip metalFootstepClip;
+    public float raycastDistance = 1.5f; // Adjust based on height
+
     private Vector3 lastPosition;
     private float stepTimer = 0f;
     private AudioSource footstepAudio;
@@ -40,6 +44,7 @@ public class FootstepScript : MonoBehaviour
 
             if (stepTimer >= stepInterval && footstepAudio != null)
             {
+                UpdateFootstepClip(); // Set the correct clip based on surface
                 footstepAudio.pitch = Random.Range(minPitch, maxPitch);
                 footstepAudio.Play();
                 stepTimer = 0f;
@@ -54,6 +59,29 @@ public class FootstepScript : MonoBehaviour
         }
 
         lastPosition = xrOriginTransform.position;
+    }
+
+    void UpdateFootstepClip()
+    {
+        RaycastHit hit;
+        Vector3 rayOrigin = xrOriginTransform.position + Vector3.up * 0.1f; // Small offset to avoid self-collision
+
+        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, raycastDistance))
+        {
+            if (hit.collider.CompareTag("Metal"))
+            {
+                footstepAudio.clip = metalFootstepClip;
+            }
+            else
+            {
+                footstepAudio.clip = defaultFootstepClip;
+            }
+        }
+        else
+        {
+            // If nothing hit, fallback to default
+            footstepAudio.clip = defaultFootstepClip;
+        }
     }
 
     void footsteps()
