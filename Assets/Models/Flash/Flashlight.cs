@@ -4,29 +4,17 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    public Material lens;
+    public Light light;
+    public bool isOn = false;
 
-    private Light _light;
-    private AudioSource _audioSource;
-
-    void Start()
+    void update()
     {
-        _light = GetComponentInChildren<Light>();
-        _audioSource = GetComponent<AudioSource>();
-    }
-    public void LightOn()
-    {
-        _audioSource.Play();
-        lens.EnableKeyword("_EMISSION");
-        _light.enabled = true;
+        GetComponent<Light>().enabled = isOn;
     }
 
-    public void LighOff()
+    public void ToggleLight()
     {
-        _audioSource.Play();
-        lens.DisableKeyword("_EMISSION");
-        _light.enabled = false;
-        
+        isOn = !isOn;
     }
 
 }
