@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dino Crisis 1 - Velociraptor
+* source:	https://sketchfab.com/3d-models/dino-crisis-1-velociraptor-3269938203544b079339ac889194b7e9
+* author:	ziggertron (https://sketchfab.com/ziggertron)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dino Crisis 1 - Velociraptor" (https://sketchfab.com/3d-models/dino-crisis-1-velociraptor-3269938203544b079339ac889194b7e9) by ziggertron (https://sketchfab.com/ziggertron) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
